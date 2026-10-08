@@ -1,0 +1,99 @@
+[i] dataset: 4793 righe
+[i] feature costruite: 117 colonne
+
+==================================================================
+  TASK 1 — ESITO (classificazione, 3 classi)
+==================================================================
+[i] esclusa la classe 'altro': 555 pronunce
+
+Validazione a finestra mobile su [2018, 2019, 2020, 2021, 2022] (F1_macro):
+   F1_macro=  0.384  (+/-0.042)  {'max_depth': 3, 'tau': None, 'class_w': 'none'}
+   F1_macro=  0.426  (+/-0.036)  {'max_depth': 3, 'tau': None, 'class_w': 'sqrt'}
+   F1_macro=  0.399  (+/-0.076)  {'max_depth': 3, 'tau': 5, 'class_w': 'none'}
+   F1_macro=  0.451  (+/-0.066)  {'max_depth': 3, 'tau': 5, 'class_w': 'sqrt'}
+   F1_macro=  0.393  (+/-0.054)  {'max_depth': 3, 'tau': 10, 'class_w': 'none'}
+   F1_macro=  0.434  (+/-0.062)  {'max_depth': 3, 'tau': 10, 'class_w': 'sqrt'}
+   F1_macro=  0.383  (+/-0.064)  {'max_depth': 6, 'tau': None, 'class_w': 'none'}
+   F1_macro=  0.412  (+/-0.077)  {'max_depth': 6, 'tau': None, 'class_w': 'sqrt'}
+   F1_macro=  0.429  (+/-0.067)  {'max_depth': 6, 'tau': 5, 'class_w': 'none'}
+   F1_macro=  0.447  (+/-0.074)  {'max_depth': 6, 'tau': 5, 'class_w': 'sqrt'}
+   F1_macro=  0.401  (+/-0.068)  {'max_depth': 6, 'tau': 10, 'class_w': 'none'}
+   F1_macro=  0.418  (+/-0.072)  {'max_depth': 6, 'tau': 10, 'class_w': 'sqrt'}
+-> scelto: {'max_depth': 3, 'tau': 5, 'class_w': 'sqrt'}  (F1_macro medio 0.451)
+   (baseline ultimi 3 anni sulle finestre: F1_macro=0.178)
+
+TEST FINALE  train: 3882 (anni <2023)  |  test: 356 (anni >=2023)
+
+BASELINE (classe piu' frequente ultimi 3 anni = 'inammissibilita'): accuracy=0.250  F1_macro=0.133
+MODELLO  (gradient boosting):     accuracy=0.430  F1_macro=0.425
+
+Report per classe (test):
+                 precision    recall  f1-score   support
+
+   accoglimento       0.61      0.50      0.55       143
+inammissibilita       0.27      0.48      0.35        89
+   infondatezza       0.49      0.31      0.38       124
+
+       accuracy                           0.43       356
+      macro avg       0.45      0.43      0.43       356
+   weighted avg       0.48      0.43      0.44       356
+
+Matrice di confusione (righe=vero, colonne=predetto):
+         accogli   inammis   infonda
+accogli       71        54        18
+inammis       23        43        23
+infonda       23        62        39
+
+--- Feature piu' importanti (esito, permutation importance) ---
+   +0.0372  par_117
+   +0.0265  atto_legge_regionale
+   +0.0253  autorita_rimettente_tipo_cassazione
+   +0.0222  par_35
+   +0.0153  autorita_rimettente_tipo_consiglio_di_stato
+   +0.0115  materia_penale
+   +0.0105  ha_interposti
+   +0.0105  materia_processuale
+   +0.0098  autorita_rimettente_tipo_giudice_di_pace
+   +0.0097  par_32
+   +0.0090  par_41
+   +0.0083  giurisdizione_a_quo_amministrativa
+   +0.0067  atto_decreto_legge
+   +0.0062  par_97
+   +0.0052  materia_edilizia_urbanistica
+
+==================================================================
+  TASK 2 — DURATA giorni GU->decisione (regressione)
+==================================================================
+
+Validazione a finestra mobile su [2018, 2019, 2020, 2021, 2022] (MAE_giorni):
+   MAE_giorni=102.402  (+/-23.213)  {'max_depth': 3, 'tau': None}
+   MAE_giorni=104.610  (+/-22.628)  {'max_depth': 3, 'tau': 3}
+   MAE_giorni=103.797  (+/-23.194)  {'max_depth': 3, 'tau': 5}
+   MAE_giorni=104.414  (+/-23.132)  {'max_depth': 6, 'tau': None}
+   MAE_giorni=107.022  (+/-22.963)  {'max_depth': 6, 'tau': 3}
+   MAE_giorni=105.782  (+/-22.794)  {'max_depth': 6, 'tau': 5}
+-> scelto: {'max_depth': 3, 'tau': None}  (MAE_giorni medio 102.402)
+   (baseline mediana ultimi 3 anni sulle finestre: MAE=105.4)
+
+TEST FINALE  train: 4379  |  test: 379  (righe con durata valida)
+
+BASELINE (mediana ultimi 3 anni = 252 gg): MAE=  77.1 giorni
+MODELLO (grad. boosting): MAE=  86.1 giorni  RMSE= 111.6  R2=-0.386
+  (il modello sbaglia in media di ~86 giorni; il baseline di ~77)
+
+--- Feature piu' importanti (durata, permutation importance) ---
+   +0.0026  atto_codice
+   +0.0023  par_53
+   +0.0011  autorita_rimettente_tipo_tribunale_ordinario
+   +0.0010  par_2
+   +0.0010  materia_concorsuale
+   +0.0008  giurisdizione_a_quo_penale
+   +0.0006  par_81
+   +0.0006  par_97
+   +0.0005  par_24
+   +0.0005  n_parametri
+   +0.0004  atto_decreto_legislativo
+   +0.0003  par_119
+   +0.0002  par_117
+   +0.0002  materia_edilizia_urbanistica
+   +0.0002  materia_pubblico_impiego

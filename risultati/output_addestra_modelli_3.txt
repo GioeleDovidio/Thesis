@@ -1,0 +1,33 @@
+[i] dataset: 4793 righe  |  feature: 117 colonne
+[i] iperparametri (dalla versione 2): esito {'max_depth': 3, 'tau': 5, 'class_w': 'sqrt'}, durata {'max_depth': 3, 'tau': None}
+
+==============================================================================
+  1) ABLAZIONE: si toglie un gruppo di feature alla volta
+==============================================================================
+
+gruppo tolto                  col |         ESITO F1 macro         |       DURATA MAE giorni       
+                                  |      finestre    test    diff |      finestre    test    diff
+nessuno (tutte le feature)      0 | 0.451±0.066    0.425  +0.000 |  102.4± 23.2     86.1    +0.0
+rimettente                     17 | 0.404±0.083    0.380  -0.045 |  102.5± 24.1     86.0    -0.0
+giurisdizione                   7 | 0.452±0.058    0.425  +0.000 |  102.8± 23.7     86.6    +0.6
+materia                        20 | 0.450±0.070    0.453  +0.027 |  102.8± 23.6     83.6    -2.5
+atto                            8 | 0.425±0.048    0.402  -0.023 |  102.6± 24.0     85.6    -0.4
+interposti                      5 | 0.435±0.061    0.413  -0.012 |  102.9± 23.3     85.9    -0.1
+parametri                      60 | 0.420±0.068    0.406  -0.019 |  102.7± 22.1     88.0    +2.0
+
+  diff = differenza rispetto al modello con tutte le feature (esito: negativo = peggiora;
+      durata: positivo = peggiora). Confrontare anche le colonne 'finestre', piu' stabili.
+
+==============================================================================
+  2) SPLIT CASUALE vs SPLIT TEMPORALE
+==============================================================================
+
+(split casuale: 10 estrazioni, test della stessa dimensione del test temporale,
+ stratificato per classe per l'esito; valori = media ± deviazione standard)
+
+                            split temporale        split casuale   differenza
+ESITO F1 macro                        0.434         0.460±0.026       +0.026
+  baseline                            0.133         0.202±0.000
+DURATA MAE giorni                      86.1         113.4±  5.4        +27.4
+  baseline (mediana)                   77.1         115.9±  6.1
+  modello - baseline                   +8.9                 -2.5

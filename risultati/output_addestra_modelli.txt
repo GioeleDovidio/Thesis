@@ -1,0 +1,72 @@
+[i] dataset: 4793 righe
+[i] feature costruite: 117 colonne
+
+==================================================================
+  TASK 1 — ESITO (classificazione, 4 classi)
+==================================================================
+train: 4414 (anni <2023)  |  test: 379 (anni >=2023)
+
+BASELINE (classe piu' frequente): accuracy=0.235  F1_macro=0.095
+MODELLO  (gradient boosting):     accuracy=0.398  F1_macro=0.321
+
+Report per classe (test):
+                 precision    recall  f1-score   support
+
+   accoglimento       0.50      0.48      0.49       143
+          altro       0.03      0.04      0.03        23
+inammissibilita       0.29      0.31      0.30        89
+   infondatezza       0.48      0.43      0.45       124
+
+       accuracy                           0.40       379
+      macro avg       0.33      0.32      0.32       379
+   weighted avg       0.42      0.40      0.41       379
+
+Matrice di confusione (righe=vero, colonne=predetto):
+         accogli     altro   inammis   infonda
+accogli       69        12        30        32
+  altro        7         1         4        11
+inammis       32        15        28        14
+infonda       29         9        33        53
+
+--- Feature piu' importanti (esito, permutation importance) ---
+   +0.0229  n_parametri
+   +0.0124  autorita_rimettente_tipo_cassazione
+   +0.0117  par_117
+   +0.0110  autorita_rimettente_tipo_giudice_di_pace
+   +0.0103  atto_decreto_legislativo
+   +0.0098  autorita_rimettente_tipo_tribunale_sorveglianza
+   +0.0093  atto_legge_regionale
+   +0.0090  par_53
+   +0.0063  materia_processuale
+   +0.0051  par_77
+   +0.0043  atto_dpr
+   +0.0041  autorita_rimettente_tipo_gip_gup
+   +0.0040  par_13
+   +0.0039  atto_legge_statale
+   +0.0036  autorita_rimettente_tipo_magistrato_sorveglianza
+
+==================================================================
+  TASK 2 — DURATA giorni GU->decisione (regressione)
+==================================================================
+train: 4379  |  test: 379  (righe con durata valida)
+
+BASELINE (mediana):     MAE=  77.1 giorni
+MODELLO (grad. boosting): MAE=  92.0 giorni  RMSE= 119.4  R2=-0.586
+  (il modello sbaglia in media di ~92 giorni; il baseline di ~77)
+
+--- Feature piu' importanti (durata, permutation importance) ---
+   +0.0058  atto_codice
+   +0.0030  materia_pubblico_impiego
+   +0.0027  autorita_rimettente_tipo_tribunale_ordinario
+   +0.0024  materia_immigrazione
+   +0.0017  materia_penale
+   +0.0015  materia_edilizia_urbanistica
+   +0.0014  atto_dpr
+   +0.0013  par_1
+   +0.0012  int_altro_trattato
+   +0.0012  n_parametri
+   +0.0012  ha_interposti
+   +0.0012  par_81
+   +0.0011  par_112
+   +0.0009  par_21
+   +0.0009  par_10

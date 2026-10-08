@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Chiavi API e configurazioni locali
+.env
+
+# File temporanei
+*.tmp
+~$*
+
+# Archivio grezzo dello scraper: centinaia di MB, si rigenera con scraper_v2.py
+pipeline/pronunce_raw.jsonl
