@@ -1,6 +1,6 @@
 # Pronunce della Corte costituzionale: dataset e modelli predittivi
 
-Sistema sviluppato durante il tirocinio e descritto nella tesi di Gioele D'Ovidio.
+Sistema sviluppato durante il tirocinio e descritto nella tesi.
 Raccoglie dal sito della Corte costituzionale le pronunce emesse nei **giudizi di
 legittimità costituzionale in via incidentale** (1956–2026) e produce:
 
