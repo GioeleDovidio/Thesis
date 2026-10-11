@@ -1,6 +1,9 @@
 # Pronunce della Corte costituzionale: dataset e modelli predittivi
 
-Sistema sviluppato durante il tirocinio e descritto nella tesi.
+Sistema sviluppato durante il tirocinio e descritto nella tesi di laurea di Gioele D'Ovidio,
+*Sistema automatizzato per l'acquisizione e l'analisi predittiva delle pronunce della
+Corte Costituzionale italiana* (Università degli Studi di Modena e Reggio Emilia,
+Corso di Laurea in Informatica, A.A. 2025/2026; relatore Prof. Angelo Ferrando).
 Raccoglie dal sito della Corte costituzionale le pronunce emesse nei **giudizi di
 legittimità costituzionale in via incidentale** (1956–2026) e produce:
 
@@ -403,12 +406,12 @@ feature (nessun modello batte la mediana).
 |---|---|
 | 3.1 Ambiente di sviluppo e scelte trasversali | `requirements.txt`, struttura della repository |
 | 3.2 Fondamenti di acquisizione automatica dal web | `build_gu.py`, `scraper_v2.py` |
-| 3.3 Indicizzazione della Gazzetta Ufficiale | `build_gu.py` → `gu_index.csv` |
-| 3.4 Lo scraper delle pronunce | `scraper_v2.py` → `pronunce_raw.jsonl` |
-| 3.5 Estrazione semantica con un LLM locale | `llm_extractor.py` → `pronunce.csv` |
+| 3.3 Indicizzazione della Gazzetta Ufficiale (build_gu.py) | `build_gu.py` → `gu_index.csv` |
+| 3.4 Lo scraper delle pronunce (scraper_v2.py) | `scraper_v2.py` → `pronunce_raw.jsonl` |
+| 3.5 Estrazione semantica con un LLM locale (llm_extractor.py) | `llm_extractor.py` → `pronunce.csv` |
 | 3.6 Preparazione del dataset delle pronunce | `aggiungi_giorni_gu.py`, `split_date_gu.py` |
-| 3.7 Estrazione delle feature a vocabolario chiuso | `estrai_feature.py` → `feature_estratte.*` |
-| 3.8 I modelli predittivi | `unisci_dataset.py`, `addestra_modelli.py`, `addestra_modelli_2.py`, `addestra_modelli_3.py` |
+| 3.7 Estrazione delle feature (estrai_feature.py) | `estrai_feature.py` → `feature_estratte.*` |
+| 3.8 I modelli predittivi (addestra_modelli.py) | `unisci_dataset.py`, `addestra_modelli.py`, `addestra_modelli_2.py`, `addestra_modelli_3.py` |
 | Capitolo 4 | `risultati/` |
 
 ---

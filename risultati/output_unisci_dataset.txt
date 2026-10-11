@@ -1,0 +1,38 @@
+[i] feature: 5571 righe, 9 colonne
+[i] originale: 16672 righe, colonne: ['\ufeffNumero_Pronuncia', 'Anno', 'Date_GU', 'Camera_Consiglio', 'Decisione_del', 'Giorni_GU_Decisione', 'Deposito_del', 'Esito', 'Giudice', 'Soggetto_Costituisce', 'Comunicato', 'URL_Pronuncia']
+
+[i] colonne rilevate -> url:URL_Pronuncia | GU:Date_GU | giorni:Giorni_GU_Decisione | esito:Esito
+
+[i] pronunce con esito misto escluse: 778 su 5571
+
+=== DIAGNOSTICA ===
+Righe totali dopo il join e l'esclusione dei misti: 4793
+Feature senza target (URL non combaciante): 0
+giorni_gu_decisione mancanti: 34  |  anomali (<0 o >4000): 1
+
+Distribuzione esito:
+esito
+inammissibilita    1845
+infondatezza       1642
+accoglimento        751
+altro               555
+
+giorni_gu_decisione — n=4758  min=35  mediana=250  media=295  max=1559
+
+Esempi (esito originale -> classe):
+   [misto           ] <- inammissibile - manifestamente infondata - non fondata
+   [inammissibilita ] <- inammissibile
+   [infondatezza    ] <- non fondata
+   [accoglimento    ] <- illegittimità costituzionale
+   [misto           ] <- inammissibile - non fondata
+   [misto           ] <- illegittimità costituzionale - inammissibile
+   [altro           ] <- ammissibile 
+   [misto           ] <- illegittimità costituzionale - inammissibile - non fondata
+   [misto           ] <- illegittimità costituzionale - non fondata
+   [altro           ] <- restituzione atti
+   [altro           ] <- rinvio
+   [altro           ] <- ammissibile
+
+[OK] Salvato dataset_ml.csv (4793 righe).
+[i] Controlla la distribuzione esiti e gli esempi qui sopra: se una classe e' sbagliata,
+    aggiusta KEYWORDS_ESITO nella CONFIG e rilancia.
